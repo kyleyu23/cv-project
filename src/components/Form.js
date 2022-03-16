@@ -1,41 +1,63 @@
 import React, { Component } from 'react';
 
-class Form extends Component {
+const DEFAULT_PERSON = {
+    firstName: "",
+    lastName: "",
+};
+
+class PersonEntry extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            firstName: "",
-            lastName: "",
-        }
-
-
+            ...(props.currentPerson ?? DEFAULT_PERSON)
+        };
     }
 
-    updateValueFor(fieldName, newValue) {
-        console.log(this.state);
+    submit(e) {
+        this.props.onSubmit(this.state);
+        e.preventDefault();
+        this.clearForm();
+    }
 
+    clearForm() {
+        this.setState({ ...DEFAULT_PERSON });
+    }
+
+    edit() {
+        this.setState({ ...this.props.currentPerson });
     }
 
     render() {
-        const { onSubmit, formState, updateState } = this.props;
-        // console.log(state);
+        const { firstName, lastName } = this.state;
         return (
             <div>
-                <form onSubmit={onSubmit}>
+                <form onSubmit={(e) => this.submit(e)}>
                     Personal Information <br />
                     <label>
                         First Name
                         <input
-                            onChange={(e) => this.updateValueFor("firstName", e.target.value)}
-                            value={formState.firstName}
+                            onChange={(e) => this.setState({ firstName: e.target.value })}
+                            value={firstName}
                             type="text"
                             name="firstName"
+                        />
+                    </label>
+                    <label>
+                        Last Name
+                        <input
+                            onChange={(e) => this.setState({ lastName: e.target.value })}
+                            value={lastName}
+                            type="text"
+                            name="lastName"
                         />
                     </label>
                     <br />
                     <button type="submit">
                         Submit
+                    </button>
+                    <button type="button" onClick={() => this.edit()}>
+                        Edit
                     </button>
                 </form>
             </div>
@@ -43,4 +65,4 @@ class Form extends Component {
     }
 }
 
-export default Form;
+export default PersonEntry;
