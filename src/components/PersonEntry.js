@@ -13,6 +13,19 @@ const DEFAULT_PERSON = {
     endingDate: "AUG 2022",
 };
 
+const EMPTY_PERSON = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    school: "",
+    major: "",
+    dateOfStudy: "",
+    companyName: "",
+    position: "",
+    startingDate: "",
+    endingDate: "",
+};
+
 class PersonEntry extends Component {
     constructor(props) {
         super(props);
@@ -29,7 +42,7 @@ class PersonEntry extends Component {
     }
 
     clearForm() {
-        this.setState({ ...DEFAULT_PERSON });
+        this.setState({ ...EMPTY_PERSON });
     }
 
     edit() {
