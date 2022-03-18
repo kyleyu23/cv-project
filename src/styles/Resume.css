@@ -1,0 +1,32 @@
+.resume {
+    display:flex;
+    flex-direction: column;
+    max-width: 40vw;
+}
+
+/* name, section title */
+h1,h3 {
+    color:cornflowerblue;
+}
+
+h3{
+    text-decoration: underline;
+}
+
+.headingWithDate{
+    display:flex;
+    justify-content: space-between;
+}
+.resume > * {
+    margin-bottom: 5px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.section {
+    margin-bottom:20px;
+}
+
+.position{
+    font-style: italic;
+}

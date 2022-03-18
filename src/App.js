@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="content">
         <PersonEntry
           onSubmit={(person) => this.handleSubmit(person)}
           currentPerson={this.state.person}
