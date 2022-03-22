@@ -1,37 +1,26 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PersonEntry from "./components/PersonEntry";
 import Resume from "./components/Resume";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+function App() {
+  const [person, setPerson] = useState(null);
 
-    this.state = {
-      person: null,
-    };
-
+  handleSubmit = (person) => {
+    setPerson(person)
   }
-
-  handleSubmit(person) {
-    this.setState({ person });
-  }
-
-  render() {
-    return (
-      <div className="content">
-        <PersonEntry
-          onSubmit={(person) => this.handleSubmit(person)}
-          currentPerson={this.state.person}
+  return (
+    <div className="content">
+      <PersonEntry
+        onSubmit={handleSubmit(person)}
+        currentPerson={person}
+      />
+      {person &&
+        <Resume
+          currentPerson={person}
         />
-        {this.state.person &&
-          <Resume
-            currentPerson={this.state.person}
-          />
-        }
-      </div >
-
-
-    )
-  }
+      }
+    </div>
+  )
 }
+
 export default App;
