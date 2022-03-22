@@ -5,13 +5,13 @@ import Resume from "./components/Resume";
 function App() {
   const [person, setPerson] = useState(null);
 
-  handleSubmit = (person) => {
+  const handleSubmit = (person) => {
     setPerson(person)
   }
   return (
     <div className="content">
       <PersonEntry
-        onSubmit={handleSubmit(person)}
+        onSubmit={(person) => handleSubmit(person)}
         currentPerson={person}
       />
       {person &&
